@@ -2,6 +2,7 @@ from dotenv import dotenv_values
 from telebot.async_telebot import AsyncTeleBot 
 
 from api.rcon import RconServer 
+from decorator.check_permission import CheckPermissionByWhitelist
 
 config = dotenv_values(".env")
 
@@ -18,6 +19,7 @@ class Bot(AsyncTeleBot):
     async def sendWelcom(self, message):
         await self.send_message(message.chat.id, "Привет! 👋😃")
 
+    @CheckPermissionByWhitelist
     async def serverReload(self, message):
         self._rconServer.serverReload()
         await self.send_message(message.chat.id, f"🟢 Сервер успешно перезагружен")
