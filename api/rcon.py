@@ -6,6 +6,6 @@ class RconServer:
         self.port = int(port)
         self.password = password
 
-    def serverRestart(self):
+    def serverReload(self):
         with r(self.host, self.password, port=self.port) as mcr:
-            mcr.command("restart")
+            mcr.command("reload")

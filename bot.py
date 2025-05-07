@@ -1,12 +1,11 @@
-import telebot
-
+from telebot import TeleBot
 from dotenv import dotenv_values
 
 from api.rcon import RconServer 
 
 config = dotenv_values(".env")
 
-class Bot(telebot.TeleBot):
+class Bot(TeleBot):
     def __init__(self):
         super().__init__(config.get("TELEGRAM_API_TOKEN"))
 
@@ -19,6 +18,6 @@ class Bot(telebot.TeleBot):
     def sendWelcom(self, message):
         self.send_message(message.chat.id, "Привет! 👋😃")
 
-    def serverRestart(self, message):
-        self._rconServer.serverRestart()
-        self.send_message(message.chat.id, f"🟢 Сервер успешно перезагружен")
+    def serverReload(self, message):
+        self._rconServer.serverReload()
+        self.send_message(message.chat.id, f"🟢 Сервер успешно обновлён!")

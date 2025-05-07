@@ -6,8 +6,8 @@ bot = Bot()
 def sendWelcom(message):
     bot.sendWelcom(message)
 
-@bot.message_handler("restart")
-def serverRestart(message):
-    bot.serverRestart(message)
+@bot.message_handler("reload")
+def serverReload(message):
+    bot.serverReload(message)
 
 bot.infinity_polling()
