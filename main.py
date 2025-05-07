@@ -8,8 +8,8 @@ bot = Bot()
 async def sendWelcom(message):
     await bot.sendWelcom(message)
 
-@bot.message_handler("restart")
-async def serverRestart(message):
-    await bot.serverRestart(message)
+@bot.message_handler("reload")
+async def serverReload(message):
+    await bot.serverReload(message)
 
 asyncio.run(bot.polling())

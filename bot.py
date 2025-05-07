@@ -18,6 +18,6 @@ class Bot(AsyncTeleBot):
     async def sendWelcom(self, message):
         await self.send_message(message.chat.id, "Привет! 👋😃")
 
-    async def serverRestart(self, message):
-        await self._rconServer.serverRestart()
+    async def serverReload(self, message):
+        self._rconServer.serverReload()
         await self.send_message(message.chat.id, f"🟢 Сервер успешно перезагружен")
