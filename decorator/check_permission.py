@@ -17,5 +17,5 @@ def CheckPermissionByWhitelist(func):
             await self.send_message(message.chat.id, "🔴 У Вас нет прав, на использование данных команд.")
             return
 
-        return func(self, *args, **kwargs)
+        return await func(self, *args, **kwargs)
     return wrapper
