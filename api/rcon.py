@@ -9,3 +9,10 @@ class RconServer:
     def serverReload(self):
         with r(self.host, self.password, port=self.port) as mcr:
             mcr.command("reload")
+
+    def teleport(self, targets: str, location: str = None):
+        with r(self.host, self.password, port=self.port) as mcr:
+            if location is None:
+                mcr.command(f"tp {targets}")
+            else:
+                mcr.command(f"tp {targets} {location}")

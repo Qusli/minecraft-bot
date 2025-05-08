@@ -23,3 +23,16 @@ class Bot(AsyncTeleBot):
     async def serverReload(self, message):
         self._rconServer.serverReload()
         await self.send_message(message.chat.id, f"🟢 Сервер успешно перезагружен")
+
+    @CheckPermissionByWhitelist
+    async def teleport(self, message, targets: str, location: str | None):
+        if targets is None:
+            await self.send_message(message.chat.id, f"🔴 Первый параметр обязательный!")
+            return
+        
+        self._rconServer.teleport(targets, location)
+
+        if location is None:
+            await self.send_message(message.chat.id, f"🟢 Пользователь {targets} успешно телепортирован")
+        else:
+            await self.send_message(message.chat.id, f"🟢 Пользователь {targets} успешно телепортирован к {location}")
