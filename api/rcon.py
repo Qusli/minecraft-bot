@@ -47,4 +47,4 @@ class RconServer:
     def unban(self, target: str):
         with r(self.host, self.password, port=self.port) as mcr:
             mcr.command(f"pardon {target}")
- 
+
