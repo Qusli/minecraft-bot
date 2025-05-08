@@ -2,7 +2,10 @@ from dotenv import dotenv_values
 
 config = dotenv_values(".env")
 
-whitelist = config.get("WHITE_LIST").split(',') # "1000000, 1000001" - this user telegram ids
+whitelist = config.get("WHITE_LIST") # "1000000, 1000001" - this user telegram ids
+
+if whitelist is not None:
+    whitelist = whitelist.split(',')
 
 if not whitelist:
     whitelist = list()
