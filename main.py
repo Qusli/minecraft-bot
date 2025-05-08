@@ -13,11 +13,11 @@ async def getTPS(message):
     await bot.getTPS(message)
 
 @bot.message_handler("list")
-async def getTPS(message):
+async def getPlayers(message):
     await bot.getPlayers(message)
 
 @bot.message_handler("op")
-async def teleport(message):
+async def op(message):
     args = message.text.split(' ')
 
     target = None
@@ -28,7 +28,7 @@ async def teleport(message):
     await bot.op(message, target)
 
 @bot.message_handler("deop")
-async def teleport(message):
+async def deop(message):
     args = message.text.split(' ')
 
     target = None
