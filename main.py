@@ -16,6 +16,28 @@ async def getTPS(message):
 async def getTPS(message):
     await bot.getPlayers(message)
 
+@bot.message_handler("op")
+async def teleport(message):
+    args = message.text.split(' ')
+
+    target = None
+
+    if len(args) > 1:
+        target = args[1]
+
+    await bot.op(message, target)
+
+@bot.message_handler("deop")
+async def teleport(message):
+    args = message.text.split(' ')
+
+    target = None
+
+    if len(args) > 1:
+        target = args[1]
+
+    await bot.deop(message, target)
+
 @bot.message_handler("reload")
 async def serverReload(message):
     await bot.serverReload(message)

@@ -13,6 +13,14 @@ class RconServer:
     def getPlayers(self):
         with r(self.host, self.password, port=self.port) as mcr:
             return mcr.command("list")
+        
+    def op(self, target: str):
+        with r(self.host, self.password, port=self.port) as mcr:
+            mcr.command(f"op {target}")
+
+    def deop(self, target: str):
+        with r(self.host, self.password, port=self.port) as mcr:
+            mcr.command(f"deop {target}")
 
     def serverReload(self):
         with r(self.host, self.password, port=self.port) as mcr:

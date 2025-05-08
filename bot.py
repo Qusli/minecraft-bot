@@ -34,8 +34,29 @@ class Bot(AsyncTeleBot):
         await self.send_message(message.chat.id, list)
 
     @CheckPermissionByWhitelist
+    async def op(self, message, target: str):
+        if target is None:
+            await self.send_message(message.chat.id, f"🔴 Нужно обязательно указать ник пользователя!")
+            return
+
+        self._rconServer.op(target)
+
+        await self.send_message(message.chat.id, f"🟢 {target} успешно назначен оператором сервера")
+
+    @CheckPermissionByWhitelist
+    async def deop(self, message, target: str):
+        if target is None:
+            await self.send_message(message.chat.id, f"🔴 Нужно обязательно указать ник пользователя!")
+            return
+
+        self._rconServer.deop(target)
+
+        await self.send_message(message.chat.id, f"🟢 Оператор сервера успешно снят")
+
+    @CheckPermissionByWhitelist
     async def serverReload(self, message):
         self._rconServer.serverReload()
+
         await self.send_message(message.chat.id, f"🟢 Сервер успешно перезагружен")
 
     @CheckPermissionByWhitelist
